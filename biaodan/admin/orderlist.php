@@ -7,7 +7,7 @@
  */
 require_once 'yz.php';
 include_once __DIR__ . '/../PdoQuery.class.php';
-$config = require_once 'config.php';
+$config = require 'config.php';
 
 $result['code'] = 0;
 $result['msg'] = 'ok';
