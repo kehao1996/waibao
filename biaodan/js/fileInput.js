@@ -183,6 +183,8 @@ function picVal(obj){
     return true;
 }
 
+
+
 function wc(){
     console.log($('#fileImg').val());
     hideModal();

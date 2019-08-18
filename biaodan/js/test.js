@@ -9,7 +9,6 @@ $(function () {
 
 //开始上传图片
 function do_upload(){
-    alert(123);
     //整理最终上传文件
     var nameFlags = 0;//重写文件名命名标记
     var tempFile = [];//临时文件对象存储变量
@@ -34,9 +33,47 @@ function do_upload(){
         processData: false,                // jQuery不要去处理发送的数据
         contentType: false,                // jQuery不要去设置Content-Type请求头
         success:function (res) {           //成功回调
+            $('#imgurl').val(res.update);
+            hideModal();
         }
     });
 }
+//提交信息
+$('#but_sub').click(function (){
+
+    var content = $("#areaCont").val();
+    var update = $("#imgurl").val();
+    var address = $("#address").val();
+    var phone = $("#mobile").val();
+    var name = $("#bd_name").val();
+
+    $.post("./doSubmit.php",{sj:'test',content:content,update:update,name:name,phone:phone,address:address,type:1},function(result){
+        result = JSON.parse(result)
+        if(result.Status != 200){
+            alert(result.Msg);
+        }else{
+            alert(result.Msg);
+        }
+    });
+});
+
+//提交信息
+$('#but_jy').click(function (){
+
+    var content = $("#jycontent").val();
+
+    $.post("./doSubmit.php",{sj:'test',content:content,type:2},function(result){
+        result = JSON.parse(result)
+        if(result.Status != 200){
+            alert(result.Msg);
+        }else{
+            alert(result.Msg);
+        }
+    });
+});
+
+
+
 
 //移除一栏
 function del_files(obj) {

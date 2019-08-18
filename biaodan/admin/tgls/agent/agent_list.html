@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="易达维修服务保修平台" />
+		<!-- 作者 -->
+		<meta name="revised" content="易达维修服务保修平台.v3, 2019/05/01" />
+		<!-- 定义页面的最新版本 -->
+		<meta name="description" content="网站简介" />
+		<!-- 网站简介 -->
+		<meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
+		<title>易达维修服务保修平台</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css">
+		<script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+
+	</head>
+
+	<body>
+
+    <input id="query_status" type="hidden" value="0"/>
+
+		<div class="cBody">
+			<div class="console">
+				<form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">状态选择</label>
+                        <div class="layui-input-block">
+                            <select name="interest"  lay-filter="aihao">
+                                <option value="0">所有</option>
+                                <option value="1">待审核</option>
+                                <option value="2">审核成功</option>
+                                <option value="3">放弃</option>
+                            </select>
+                        </div>
+                    </div>
+				</form>
+
+				<script>
+					layui.use('form', function() {
+						var form = layui.form;
+				
+						//监听提交
+						form.on('submit(submitBut)', function(data) {
+							layer.msg(JSON.stringify(data.field));
+							return false;
+						});
+					});
+				</script>
+			</div>
+			
+			<table id="demo" class="layui-table">
+			</table>
+            <script type="text/html" id="titleTpl">
+                <div class="layui-form-item">
+                    <form class="layui-form">
+                        {{#  if(d.status == 1){ }}
+                        <input type="radio" lay-filter="status" name="sex" checked value="{{d.id}},1"  title="通过">
+                        <input type="radio" lay-filter="status"  name="sex" value="{{d.id}},2" title="放弃"  >
+                        {{#  } else { }}
+                        <input type="radio" lay-filter="status" name="sex" value="{{d.id}},1"   title="通过">
+                        <input type="radio" lay-filter="status"  name="sex" checked value="{{d.id}},2" title="放弃"  >
+                        {{#  } }}
+
+                        </form>
+                </div>
+            </script>
+
+            <script type="text/html" id="titleTp2">
+
+                <span class="imglist">
+                    {{#  layui.each(d.imgurl, function(index, item){ }}
+                    <div class="imglist" style="margin:0 10px; display:inline-block !important; display:inline;  max-width:70px; max-height:50px;">
+                        <img style=" max-width:70px; max-height:50px;" src="{{d.url}}{{item}}" />
+                    </div>
+
+                    {{#  }); }}
+                    </span>
+            </script>
+			
+			<!-- layUI 分页模块 -->
+			<div class="h_55"></div>
+			<div id="pages"></div>
+			<script>
+
+                $("body").on("click",".imglist  img",function(e){
+                    layer.photos({ photos: {"data": [{"src": e.target.src}]} });
+                });
+
+//                function previewImg(obj) {
+//                    var img = new Image();
+//                    img.src = obj.src;
+//                    var height = img.height + 50; //获取图片高度
+//                    var width = img.width; //获取图片宽度
+//                    var imgHtml = "<img src='" + obj.src + "' />";
+//                    //弹出层
+//                    layer.open({
+//                        type: 1,
+//                        shade: 0.8,
+//                        offset: 'auto',
+//                        maxWidth:width,
+//                        maxHeight:height,
+//                        area:['auto','auto'],
+//                        shadeClose:true,//点击外围关闭弹窗
+//                        moveOut:true,
+//                        resize:true,
+//                        scrollbar: true,//不现实滚动条
+//                        title: "图片预览", //不显示标题
+//                        content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+//                        cancel: function () {
+//                            //layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });
+//                        }
+//                    });
+//                }
+
+                layui.use('form', function(){
+                    var form = layui.form;
+                    //各种基于事件的操作，下面会有进一步介绍
+
+                    form.on('select(aihao)', function(data){
+                        $('#query_status').val(data.value)
+                        onladTable();
+                    });
+
+                    form.on('radio(status)', function(data){
+                        $.ajax({
+                            url:"/admin/updateorder.php",
+                            data:{'id':1,status:data.value},
+                            type:"post",
+                            dataType:"json",
+                            success:function(data){
+                                layer.msg(data.Msg);
+                                if(data.status == 200){
+                                    onladTable();
+                                }
+                            },
+                            error:function(data){
+                                $.messager.alert('错误',data.msg);
+                            }
+                        });
+                    });
+                });
+
+
+                function onladTable(){
+                    layui.use('table', function(){
+                        var table = layui.table;
+                        var querystatus = $('#query_status').val();
+                        //第一个实例
+                        table.render({
+                            elem: '#demo'
+                            ,url: '/admin/orderlist.php' //数据接口
+                            ,page: true, //开启分页
+                            where : {status:querystatus}
+                            ,cols: [[ //表头
+                                {field: 'id', title: 'ID', sort: true, fixed: 'left'}
+                                ,{field: 'name', title: '姓名'}
+                                ,{field: 'phone', title: '电话', sort: true}
+                                ,{field: 'address', title: '地址'}
+                                ,{field: 'content', title: '故障内容'},
+                                { title: '故障图片',templet: '#titleTp2'}
+                                ,{field: 'status', title: '状态',  sort: true ,templet:function (d){
+                                    if(d.status == 0){
+                                        return '<span style="color: #c00;">待审核</span>'
+                                    }else if(d.status == 1){
+                                        return '<span style="color: #008000;">审核成功</span>'
+                                    }else{
+                                        return '<span style="color: red;">放弃</span>'
+                                    }
+                                }}
+                                ,{field: 'createtime', title: '创建时间', sort: true},
+                                { title: '操作',templet: '#titleTpl'}
+                            ]]
+                        });
+
+                    });
+                }
+
+                onladTable();
+
+			</script>
+		</div>
+	</body>
+
+</html>
