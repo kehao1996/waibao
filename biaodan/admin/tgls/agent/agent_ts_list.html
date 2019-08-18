@@ -41,6 +41,8 @@
 				<!--</form>-->
 
 				<script>
+
+
 					layui.use('form', function() {
 						var form = layui.form;
 				
@@ -60,22 +62,44 @@
 			<div class="h_55"></div>
 			<div id="pages"></div>
 			<script>
-                layui.use('table', function(){
-                    var table = layui.table;
 
-                    //第一个实例
-                    table.render({
-                        elem: '#demo'
-                        ,url: '/admin/tslist.php' //数据接口
-                        ,page: true //开启分页
-                        ,cols: [[ //表头
-                            {field: 'id', title: 'ID', sort: true, fixed: 'left'}
-                            ,{field: 'content', title: '投诉或建议'}
-                            ,{field: 'createtime', title: '创建时间', sort: true}
-                        ]]
-                    });
-
+                $.ajax({
+                    url:"/admin/yz.php",
+                    type:"post",
+                    dataType:"json",
+                    success:function(data){
+                        if(data.Status == 300){
+                            location.href= data.url
+                        }
+                    },
+                    error:function(data){
+                        $.messager.alert('错误',data.msg);
+                    }
                 });
+
+
+
+                function onLoadTable(){
+                    layui.use('table', function(){
+                        var table = layui.table;
+
+                        //第一个实例
+                        table.render({
+                            elem: '#demo'
+                            ,url: '/admin/tslist.php' //数据接口
+                            ,page: true //开启分页
+                            ,cols: [[ //表头
+                                {field: 'id', title: 'ID', sort: true, fixed: 'left'}
+                                ,{field: 'content', title: '投诉或建议'}
+                                ,{field: 'createtime', title: '创建时间', sort: true}
+                            ]]
+                        });
+
+                    });
+                }
+
+                onLoadTable();
+
 			</script>
 		</div>
 	</body>

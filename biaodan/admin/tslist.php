@@ -5,6 +5,7 @@
  * Date: 2019/8/18 0018
  * Time: 13:46
  */
+require_once 'yz.php';
 include_once __DIR__ . '/../PdoQuery.class.php';
 
 $result['code'] = 0;

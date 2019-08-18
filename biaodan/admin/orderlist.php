@@ -5,7 +5,9 @@
  * Date: 2019/8/18 0018
  * Time: 13:46
  */
+require_once 'yz.php';
 include_once __DIR__ . '/../PdoQuery.class.php';
+$config = require_once 'config.php';
 
 $result['code'] = 0;
 $result['msg'] = 'ok';
@@ -25,7 +27,7 @@ $total = $pdo->clear()->select('count(*)')->from('order')->where($where)->getVal
 $result_data = $pdo->clear()->select('*')->from('order')->where($where)->limit(($pageindex - 1) * $pagesize,$pagesize)->order('status asc,id desc')->getAll();
 foreach($result_data as $k=>$v){
     $result_data[$k]['imgurl'] = explode(';',$v['update']);
-    $result_data[$k]['url'] = 'http://test.waibao.com/';
+    $result_data[$k]['url'] = $config['ym'];
 }
 
 $result['data'] = $result_data;

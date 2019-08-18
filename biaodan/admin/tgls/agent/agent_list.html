@@ -95,6 +95,20 @@
 			<div id="pages"></div>
 			<script>
 
+                $.ajax({
+                    url:"/admin/yz.php",
+                    type:"post",
+                    dataType:"json",
+                    success:function(data){
+                        if(data.Status == 300){
+                            location.href= data.url
+                        }
+                    },
+                    error:function(data){
+                        $.messager.alert('错误',data.msg);
+                    }
+                });
+
                 $("body").on("click",".imglist  img",function(e){
                     layer.photos({ photos: {"data": [{"src": e.target.src}]} });
                 });

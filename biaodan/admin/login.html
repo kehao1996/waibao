@@ -8,14 +8,14 @@
 		<meta name="renderer" content="webkit">
 		<!--国产浏览器高速模式-->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="穷在闹市" />
+		<meta name="author" content="易达维修服务保修平台" />
 		<!-- 作者 -->
-		<meta name="revised" content="穷在闹市.v3, 2019/05/01" />
+		<meta name="revised" content="易达维修服务保修平台.v3, 2019/05/01" />
 		<!-- 定义页面的最新版本 -->
 		<meta name="description" content="网站简介" />
 		<!-- 网站简介 -->
 		<meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
-		<title>穷在闹市出品</title>
+		<title>易达维修服务保修平台</title>
 
 		<!-- 公共样式 开始 -->
 		<link rel="shortcut icon" href="images/favicon.ico"/>
@@ -51,7 +51,7 @@
 			<div class="logo">
 				<img src="images/login_logo.png" />
 				<div>
-					<h1>穷在闹市出品</h1>
+					<h1>易达维修服务保修平台</h1>
 					<p>版本号:19.3.01</p>
 				</div>
 			</div>
@@ -74,21 +74,39 @@
 				<script>
 					layui.use('form', function() {
 						var form = layui.form;
+                        var adminame = '';
+                        var password = '';
 						form.verify({
 				            userName: function(value, item){ //value：表单的值、item：表单的DOM对象
 				                if(value == null || value == ""){
 				                    return '请输入您的用户名！';
 				                }
+                                adminame = value;
 				            },
 				            passWord: function(value, item){ 
 				                if(value == null || value == ""){
 				                    return '请输入您的账户密码！';
 				                }
+                                password = value;
 				            }
 				        });
 						//监听提交
 						form.on('submit(submitBut)', function(data) {
-							
+                            $.ajax({
+                                url:"/admin/logo.php",
+                                data:{username:adminame,password:password},
+                                type:"post",
+                                dataType:"json",
+                                success:function(data){
+                                    layer.msg(data.Msg);
+                                    if(data.Status == 200){
+                                        location.href='/admin/frame.html';
+                                    }
+                                },
+                                error:function(data){
+                                    $.messager.alert('错误',data.msg);
+                                }
+                            });
 							return false;
 						});
 					});
