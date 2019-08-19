@@ -19,46 +19,51 @@
 <div class="wantConsult">
   <div class="wrap_mar">
     <div class="zxTitle clear">
-      <p class="fl1 p1">我要咨询</p>
-      <p class="fr1 p2"><i class="i14 fl1"><img src="images/zxphone.png" alt=""></i><span class="fl1">全国免费电话 &nbsp;&nbsp;13917728612&nbsp;&nbsp;18992562608</span><i class="fl1 i15"><img src="images/shuzi.png" alt=""></i></p>
+      <p class="fl1 p1" style="color: #87CEFA">易达维修服务保修平台</p>
+      <p class="fr1 p2"><i class="i14 fl1"><img src="images/zxphone.png" alt=""></i><span class="fl1">服务热线  &nbsp;&nbsp;13917728612&nbsp;&nbsp;18992562608</span><i class="fl1 i15"><img src="images/shuzi.png" alt=""></i></p>
     </div>
     <div class="wantConsult_btm clear">
       <div class="wantConsult_btm_left fl1">
         <p class="sixPage">服务内容</p>
         <ul>
           <li class="clear"><i class="fl1 i16"></i><span class="fl1">水电路</span><font class="fl1"></font></li>
-          <li class="clear"><i class="fl1 i17"></i><span class="fl1">点起成套设备</span><font class="fl1"></font></li>
+          <li class="clear"><i class="fl1 i17"></i><span class="fl1">电气成套设备</span><font class="fl1"></font></li>
           <li class="clear"><i class="fl1 i18"></i><span class="fl1">制冷设备</span></li>
           <li class="clear"><i class="fl1 i19"></i><span class="fl1">安装</span></li>
           <li class="clear"><i class="fl1 i20"></i><span class="fl1">维修</span></li>
           <li class="clear"><i class="fl1 i21"></i><span class="fl1">外包</span></li>
         </ul>
-        <p class="chanQuan">服务范围<br>
+        <p class="chanQuan" style="font-size:17px;">服务对象<br>
           家庭、企业、商业用户</p>
       </div>
        
       <div class="wantConsult_btm_right fr1">
 
-           <span class="form fl1">
+
+        <span action="" class="form fl1">
+
+          <p class="input_p clear"> <span class="span1 fl1" style="letter-spacing:10px;">联系人</span>
+            <input type="text" maxlength="5" id ="bd_name" name="sname"  placeholder="请输入姓名" class="txt" ></p>
+          <p class="input_p clear"> <span class="span1 fl1" style="letter-spacing:10px;">联系电话</span>
+            <input type="text"  name="mobile" id="mobile" maxlength="11" placeholder="请输入您的手机"  class="txt">
+          </p>
+            <p class="input_p clear"> <span class="span1 fl1" style="letter-spacing:20px;">地址</span>
+                <input type="text"  name="mobile" id="address" maxlength="100" value="湖南省长沙市" class="txt">
+            </p>
+
+
 
           <div class="btn-control">
 
+
+              <textarea name="content" id="areaCont" cols="30" rows="10" placeholder="请输入故障或问题描述"></textarea>
               <button class="simp-bt open-input" onClick="up_files($(this))">上传故障图片</button>
 
               <button class="simp-bt del-input" onClick="del_files($(this))">删除</button>
               <div class="clear"></div>
           </div>
-               </span>
-        <form action="" class="form fl1">
-          <textarea name="content" id="areaCont" cols="30" rows="10" placeholder="请输入故障或问题描述"></textarea>
-          <p class="input_p clear"> <span class="span1 fl1" style="letter-spacing:10px;">姓名</span>
-            <input type="text" maxlength="5" id ="bd_name" name="sname"  placeholder="请输入姓名" class="txt" ></p>
-          <p class="input_p clear"> <span class="span1 fl1" style="letter-spacing:10px;">联系电话</span>
-            <input type="text"  name="mobile" id="mobile" maxlength="11" placeholder="请输入您的手机"  class="txt">
-          </p>
-            <p class="input_p clear"> <span class="span1 fl1" style="letter-spacing:20px;">具体地址</span>
-                <input type="text"  name="mobile" id="address" maxlength="100" value="湖南省长沙市" class="txt">
-            </p>
+
+
 
                 <input type="hidden" value="" id="imgurl"/>
 
@@ -72,29 +77,29 @@
             <!--<input class="span2 fr1" type="button" id="butn" value="获取验证码" onClick="send_code_for_message_new($(this))">-->
           <!--</p>-->
           <p class="sub_ziXun">
-            <input  class="btn" type="button" value="提交咨询" id="but_sub">
+            <input  class="btn" type="button" value="提交订单" id="but_sub">
           </p>
             <textarea name="content" id="jycontent" cols="30" rows="10" placeholder="请输入投诉或者建议"></textarea>
             <p class="sub_ziXun">
                 <input  class="btn" type="button" value="提交" id="but_jy">
             </p>
-        </form>
+        </span>
 
 
-        <div class="select_yixiang fr1">
-          <p class="jiao"></p>
-          <p class="ninTitle">您可以根据意向选择下列 <em>[快捷留言]</em></p>
-          <ul>
-            <li><a href="javascript:void(0)" title="项目很好，请尽快联系我详谈。">项目很好，请尽快联系我详谈。</a></li>
-            <li><a href="javascript:void(0)" title="请问我所在的地区有加盟商了吗？">请问我所在的地区有加盟商了吗？</a></li>
-            <li><a href="javascript:void(0)" title="留下邮箱，请将详细资料邮件给我。">留下邮箱，请将详细资料邮件给我。</a></li>
-            <li><a href="javascript:void(0)" title="想了解的加盟流程，请与我联系！">想了解的加盟流程，请与我联系！</a></li>
-            <li><a href="javascript:void(0)" title="做为的代理加盟商能得到哪些支持？">做为的代理加盟商能得到哪些支持？</a></li>
-            <li><a href="javascript:void(0)" title="请问投资所需要的费用有哪些？">请问投资所需要的费用有哪些？</a></li>
-            <li><a href="javascript:void(0)" title="我想加盟，请电话联系我。">我想加盟，请电话联系我。</a></li>
-            <li><a href="javascript:void(0)" title="加盟，有什么优惠？">加盟，有什么优惠？</a></li>
-          </ul>
-        </div>
+        <!--<div class="select_yixiang fr1">-->
+          <!--<p class="jiao"></p>-->
+          <!--<p class="ninTitle"> <em>[收费标准]</em></p>-->
+          <!--<ul>-->
+            <!--<li><a href="javascript:void(0)" title="项目很好，请尽快联系我详谈。">项目很好，请尽快联系我详谈。</a></li>-->
+            <!--<li><a href="javascript:void(0)" title="请问我所在的地区有加盟商了吗？">请问我所在的地区有加盟商了吗？</a></li>-->
+            <!--<li><a href="javascript:void(0)" title="留下邮箱，请将详细资料邮件给我。">留下邮箱，请将详细资料邮件给我。</a></li>-->
+            <!--<li><a href="javascript:void(0)" title="想了解的加盟流程，请与我联系！">想了解的加盟流程，请与我联系！</a></li>-->
+            <!--<li><a href="javascript:void(0)" title="做为的代理加盟商能得到哪些支持？">做为的代理加盟商能得到哪些支持？</a></li>-->
+            <!--<li><a href="javascript:void(0)" title="请问投资所需要的费用有哪些？">请问投资所需要的费用有哪些？</a></li>-->
+            <!--<li><a href="javascript:void(0)" title="我想加盟，请电话联系我。">我想加盟，请电话联系我。</a></li>-->
+            <!--<li><a href="javascript:void(0)" title="加盟，有什么优惠？">加盟，有什么优惠？</a></li>-->
+          <!--</ul>-->
+        <!--</div>-->
       </div>
     </div>
   </div>
